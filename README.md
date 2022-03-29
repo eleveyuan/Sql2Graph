@@ -7,4 +7,31 @@
 3. Antlr4提供了Jetbrain平台相关的插件，解析g4语法文件，生成相应的监听器/访问器文件。
 
 
-其实Antlr4很好的与java结合，这里使用c++进行开发，存粹是个人偏爱c/c++，作为练手。 最用python作为胶水打包。
+其实Antlr4很好的与java结合，这里使用c++进行开发，存粹是个人偏爱c/c++，作为练手。 
+最后用python作为胶水打包c++所写的功能。
+
+## 注意事项
+
+### 编译antlr4-cpp-runtime
+从[https://www.antlr.org/download.html](antlr4)官网下载c++运行时环境
+
+根据readme进行build，如果macos端想偷懒可以用编译好的。编译命令如下所示
+- cd \<antlr4-dir\>/runtime/Cpp (this is where this readme is located)
+- mkdir build && mkdir run && cd build
+- cmake .. -DANTLR_JAR_LOCATION=full/path/to/antlr4-*.jar
+- make
+- DESTDIR=\<antlr4-dir\>/runtime/Cpp/run make install
+
+## 主要用法(todo)
+
+check_sql(sql: str, cate: str): 检查sql语句
+
+parser_sql(sql: str): 解析sql语句
+
+dml2json(sql: str): 解析dml语句为json格式
+
+save_img(path: str): 将sql语句转为graph保存
+
+convert_ddl(sql: str, from: str, to: str): 将建表语句从现在的语法转为目标语法
+
+ddl2csv(sql: str, path: str): 将建表语句转为csv格式

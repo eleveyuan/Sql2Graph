@@ -31,7 +31,15 @@
 *.out
 *.app
 
+# for mac/clion/idea
 .DS_Store
 __pycache__
 venv
 .idea
+generated
+libs
+cmake-build-debug
+
+# for build
+libs/antlr4-cpp-runtime*/build*
+libs/antlr4-cpp-runtime*/run
