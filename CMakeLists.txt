@@ -8,7 +8,12 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/generated
         ${PROJECT_SOURCE_DIR}/generated/mysql
         ${PROJECT_SOURCE_DIR}/libs
-        ${PROJECT_SOURCE_DIR}/libs/antl4-runtime
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/misc
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/atn
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/dfa
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/tree
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/support
 )
 
 set(src_dir
@@ -16,6 +21,8 @@ set(src_dir
         ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParser.cpp
         ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserVisitor.cpp
         ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserBaseVisitor.cpp
+        ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserListener.cpp
+        ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserBaseListener.cpp
 )
 
 file(GLOB antlr4-cpp-src
@@ -28,6 +35,6 @@ file(GLOB antlr4-cpp-src
         ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/tree/pattern/*.cpp
         ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/tree/xpath/*.cpp
 )
-add_library(antlr4-cpp-runtime ${antlr4-cpp-src})
+add_library(antlr4-runtime ${antlr4-cpp-src})
 add_executable(Sql2Graph ${src_dir} main.cpp)
-target_link_libraries(Sql2Graph antlr4-cpp-runtime)  # 将目标文件与库文件进行链接
+target_link_libraries(Sql2Graph antlr4-runtime)  # 将目标文件与库文件进行链接

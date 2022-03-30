@@ -14,13 +14,8 @@
 
 ### 编译antlr4-cpp-runtime
 从[https://www.antlr.org/download.html](antlr4)官网下载c++运行时环境
+将其中的runtime/src拷贝出来即可通过编译
 
-根据readme进行build，如果macos端想偷懒可以用编译好的。编译命令如下所示
-- cd \<antlr4-dir\>/runtime/Cpp (this is where this readme is located)
-- mkdir build && mkdir run && cd build
-- cmake .. -DANTLR_JAR_LOCATION=full/path/to/antlr4-*.jar
-- make
-- DESTDIR=\<antlr4-dir\>/runtime/Cpp/run make install
 
 ## 主要用法(todo)
 

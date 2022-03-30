@@ -37,9 +37,7 @@ __pycache__
 venv
 .idea
 generated
-libs
 cmake-build-debug
 
 # for build
-libs/antlr4-cpp-runtime*/build*
-libs/antlr4-cpp-runtime*/run
+libs/antlr4-cpp-runtime-*
