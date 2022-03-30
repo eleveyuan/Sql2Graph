@@ -13,7 +13,7 @@
 ## 注意事项
 
 ### 编译antlr4-cpp-runtime
-从[https://www.antlr.org/download.html](antlr4)官网下载c++运行时环境
+从 [antlr4 download](https://www.antlr.org/download.html) 官网下载c++运行时环境
 将其中的runtime/src拷贝出来即可通过编译
 
 
