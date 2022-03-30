@@ -8,7 +8,7 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/generated
         ${PROJECT_SOURCE_DIR}/generated/mysql
         ${PROJECT_SOURCE_DIR}/libs
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3
+        ${PROJECT_SOURCE_DIR}/libs/antl4-runtime
 )
 
 set(src_dir
@@ -19,14 +19,14 @@ set(src_dir
 )
 
 file(GLOB antlr4-cpp-src
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/atn/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/dfa/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/misc/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/support/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/tree/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/tree/pattern/*.cpp
-        ${PROJECT_SOURCE_DIR}/libs/antlr4-cpp-runtime-4.9.3/run/usr/local/include/antlr4-runtime/tree/xpath/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/atn/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/dfa/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/misc/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/support/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/tree/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/tree/pattern/*.cpp
+        ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/tree/xpath/*.cpp
 )
 add_library(antlr4-cpp-runtime ${antlr4-cpp-src})
 add_executable(Sql2Graph ${src_dir} main.cpp)
