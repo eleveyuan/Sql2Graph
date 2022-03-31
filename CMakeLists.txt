@@ -23,7 +23,7 @@ set(src_dir
         ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserBaseVisitor.cpp
         ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserListener.cpp
         ${PROJECT_SOURCE_DIR}/generated/mysql/MySqlParserBaseListener.cpp
-        src/SqlFormatter.h src/SqlError.h src/SqlFormatter.cpp)
+        src/SqlFormatter.h src/SqlError.h src/SqlFormatter.cpp src/SqlExtractor.cpp src/SqlExtractor.h)
 
 file(GLOB antlr4-cpp-src
         ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/*.cpp
