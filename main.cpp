@@ -1,14 +1,12 @@
 #include <iostream>
 #include <string>
 
-#include "MysqlParser.h"
-#include "MysqlLexer.h"
-
-using namespace antlr4;
-using namespace std;
+#include "SqlFormatter.h"
 
 int main() {
-    string a = "SELECT A, B FROM TB C;";
-    cout << a << endl;
+    std::string a = "select a, b from tb";
+    SqlFormatter sf;
+    std::cout << sf.toUpperCase(a) << std::endl;
+    sf.parserSql(a);
     return 0;
 }
