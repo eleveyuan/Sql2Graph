@@ -12,9 +12,13 @@
 
 ## 注意事项
 
-### 编译antlr4-cpp-runtime
+### 添加antlr4-cpp-runtime
+在 [cpp-target](https://github.com/antlr/antlr4/blob/master/doc/cpp-target.md#where-can-i-get-the-runtime) 中提到需要下载编译运行时环境：
+```
+Once you've generated the lexer and/or parser code, you need to download or build the runtime.
+```
 从 [antlr4 download](https://www.antlr.org/download.html) 官网下载c++运行时环境
-将其中的runtime/src拷贝出来即可通过编译
+将其中的runtime/src拷贝出来即可通过编译。
 
 
 ## 主要用法(todo)
