@@ -5,8 +5,23 @@
 #ifndef SQL2GRAPH_SQLEXTRACTOR_H
 #define SQL2GRAPH_SQLEXTRACTOR_H
 
+#include "MySqlParserBaseVisitor.h"
+//#include "MySqlParserVisitor.h"
 
-class SqlExtractor {
+#include "Csv.h"
+
+class SqlExtractor: public MySqlParserBaseVisitor {
+public:
+    /**
+     * create 区块
+     */
+    virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {
+        csv.setFileName(ctx->tableName()->getText());
+        std::cout << ctx->tableName()->getText() << std::endl;
+        return visitChildren(ctx);
+    }
+
+    Csv csv;
 
 };
 

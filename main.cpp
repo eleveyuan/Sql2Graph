@@ -4,9 +4,15 @@
 #include "SqlFormatter.h"
 
 int main() {
-    std::string a = "select a, b from tb";
+    std::string a = "CREATE TABLE IF NOT EXISTS `runoob_tbl`(\n"
+                    "   `runoob_id` INT UNSIGNED AUTO_INCREMENT,\n"
+                    "   `runoob_title` VARCHAR(100) NOT NULL,\n"
+                    "   `runoob_author` VARCHAR(40) NOT NULL,\n"
+                    "   `submission_date` DATE,\n"
+                    "   PRIMARY KEY ( `runoob_id` )\n"
+                    ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
     SqlFormatter sf;
-    std::cout << sf.toUpperCase(a) << std::endl;
+    a = sf.toUpperCase(a);
     sf.parserSql(a);
     return 0;
 }

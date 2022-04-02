@@ -13,8 +13,10 @@ void SqlFormatter::parserSql(const std::string &sql) {
     MySqlLexer lexer(&input);  // 解析词法
     antlr4::CommonTokenStream tokens(&lexer);  // 转化为token
     MySqlParser parser(&tokens);  // 解析语法
-    tokens.fill();
-    for (auto token : tokens.getTokens()) {
-        std::cout << token->toString() << std::endl;
-    }
+    parser.setBuildParseTree(true);
+    MySqlParser::RootContext *tree = parser.root(); // 语法树root节点
+
+    SqlExtractor ev;
+    ev.visit(tree);
+    std::cout << ev.csv.getFileName() << std::endl;
 }

@@ -14,6 +14,8 @@
 #include "CommonTokenStream.h"
 #include "ParseTreeWalker.h"
 
+#include "SqlExtractor.h"
+
 class SqlFormatter {
 public:
     std::string toUpperCase(std::string sql);  // antlr4语法下要求mysql语句是大写
