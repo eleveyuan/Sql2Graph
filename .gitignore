@@ -36,6 +36,7 @@
 __pycache__
 venv
 .idea
+gen
 generated
 cmake-build-debug
 
