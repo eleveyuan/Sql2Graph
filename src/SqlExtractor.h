@@ -21,6 +21,11 @@ public:
         return visitChildren(ctx);
     }
 
+    virtual antlrcpp::Any visitColumnDeclaration(MySqlParser::ColumnDeclarationContext *ctx) override {
+        std::cout << ctx->uid()->getText() << std::endl;
+        return visitChildren(ctx);
+    }
+
     Csv csv;
 
 };
