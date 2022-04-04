@@ -4,7 +4,8 @@
 ## 预备知识
 1. 大数据组件的sql层基本都是使用Antlr4来进行语法设计,例如：hive/presto/spark
 2. Antlr4设计使用监听者/访问者模式，可以很快上手
-3. Antlr4提供了Jetbrain平台相关的插件，解析g4语法文件，生成相应的监听器/访问器文件。
+3. Antlr4社区提供了较多语法文件，不需要额外编写语法文件
+4. Antlr4提供了Jetbrain平台相关的插件，解析g4语法文件，生成相应的监听器/访问器文件。
 
 
 其实Antlr4很好的与java结合，这里使用c++进行开发，存粹是个人偏爱c/c++，作为练手。 
@@ -21,7 +22,9 @@ Once you've generated the lexer and/or parser code, you need to download or buil
 将其中的runtime/src拷贝出来即可通过编译。
 
 
-## Compile
+## 解析语法文件
+1. 解析语法文件，可以在clion安装使用antlr4的插件，进行辅助生成
+2. 或可运行gen.sh命令进行生成
 ``` shell
 /bin/bash gen.sh
 ```
