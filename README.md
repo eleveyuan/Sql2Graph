@@ -21,6 +21,12 @@ Once you've generated the lexer and/or parser code, you need to download or buil
 将其中的runtime/src拷贝出来即可通过编译。
 
 
+## Compile
+``` shell
+/bin/bash gen.sh
+```
+
+
 ## 主要用法(todo)
 
 check_sql(sql: str, cate: str): 检查sql语句
