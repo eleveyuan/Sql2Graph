@@ -6,10 +6,34 @@
 #define SQL2GRAPH_SQLCREATESTRUCT_H
 
 #include <string>
+#include <vector>
 
 class SqlCreateStruct {
-public:
+private:
     std::string tableName;
+public:
+    class Entity;
+
+    class Entity {
+        std::string columnName;
+        std::string columnType;
+        std::string commentStr;
+    };
+
+    std::vector<Entity> entitys;
+
+    std::string getTableName() {
+        return tableName;
+    }
+
+    void setTableName(std::string _tablename) {
+        tableName = _tablename;
+    }
+
+    void appendEntity() {
+
+    }
+
 };
 
 

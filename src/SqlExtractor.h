@@ -9,6 +9,7 @@
 //#include "MySqlParserVisitor.h"
 
 #include "Csv.h"
+#include "SqlCreateStruct.h"
 
 class SqlExtractor: public MySqlParserBaseVisitor {
 public:
@@ -16,8 +17,7 @@ public:
      * create block
      */
     virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {
-        csv.setFileName(ctx->tableName()->getText());
-        std::cout << ctx->tableName()->getText() << std::endl;
+        sqlCreateStruct.setTableName(ctx->tableName()->getText());
         return visitChildren(ctx);
     }
 
@@ -25,6 +25,7 @@ public:
      * column name
      */
     virtual antlrcpp::Any visitColumnDeclaration(MySqlParser::ColumnDeclarationContext *ctx) override {
+
         std::cout << std::endl << ctx->uid()->getText() << std::endl;
         return visitChildren(ctx);
     }
@@ -69,6 +70,7 @@ public:
         return visitChildren(ctx);
     }
 
+    SqlCreateStruct sqlCreateStruct;
     Csv csv;
 
 };
