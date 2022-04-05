@@ -13,7 +13,7 @@
 class SqlExtractor: public MySqlParserBaseVisitor {
 public:
     /**
-     * create 区块
+     * create block
      */
     virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {
         csv.setFileName(ctx->tableName()->getText());
@@ -21,8 +21,51 @@ public:
         return visitChildren(ctx);
     }
 
+    /**
+     * column name
+     */
     virtual antlrcpp::Any visitColumnDeclaration(MySqlParser::ColumnDeclarationContext *ctx) override {
-        std::cout << ctx->uid()->getText() << std::endl;
+        std::cout << std::endl << ctx->uid()->getText() << std::endl;
+        return visitChildren(ctx);
+    }
+
+    /**
+     * column type
+     */
+    virtual antlrcpp::Any visitColumnDefinition(MySqlParser::ColumnDefinitionContext *ctx) override {
+        std::cout << ctx->dataType()->getText();
+        return visitChildren(ctx);
+    }
+
+    /**
+     * column constraints
+     */
+    virtual antlrcpp::Any visitNullColumnConstraint(MySqlParser::NullColumnConstraintContext *ctx) override {
+        std::cout << "\t" << ctx->nullNotnull()->getText() << std::endl;
+        return visitChildren(ctx);
+    }
+
+    virtual antlrcpp::Any visitDefaultColumnConstraint(MySqlParser::DefaultColumnConstraintContext *ctx) override {
+        std::cout << ctx->DEFAULT()->getText() << " ";
+        std::cout << ctx->defaultValue()->getText() << std::endl;
+        return visitChildren(ctx);
+    }
+
+    virtual antlrcpp::Any visitPrimaryKeyColumnConstraint(MySqlParser::PrimaryKeyColumnConstraintContext *ctx) override {
+        std::cout << ctx->PRIMARY()->getText() << " " << ctx->KEY()->getText()
+                  << std::endl;
+        return visitChildren(ctx);
+    }
+
+    virtual antlrcpp::Any visitUniqueKeyColumnConstraint(MySqlParser::UniqueKeyColumnConstraintContext *ctx) override {
+        std::cout << ctx->UNIQUE()->getText() << " " << ctx->KEY()->getText()
+                  << std::endl;
+        return visitChildren(ctx);
+    }
+
+    virtual antlrcpp::Any visitCommentColumnConstraint(MySqlParser::CommentColumnConstraintContext *ctx) override {
+        std::cout << ctx->COMMENT()->getText() << " " << ctx->STRING_LITERAL()->getText()
+                  << std::endl;
         return visitChildren(ctx);
     }
 
