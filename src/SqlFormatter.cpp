@@ -16,7 +16,7 @@ void SqlFormatter::parserSql(const std::string &sql) {
     parser.setBuildParseTree(true);
     MySqlParser::RootContext *tree = parser.root(); // 语法树root节点
 
-    SqlExtractor ev;
+    SqlExtractor::SqlCreateVisitor ev;
     ev.visit(tree);
-    std::cout << ev.csv.getFileName() << std::endl;
+    std::cout << ev.tableName << std::endl;
 }

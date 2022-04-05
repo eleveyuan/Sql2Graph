@@ -6,72 +6,87 @@
 #define SQL2GRAPH_SQLEXTRACTOR_H
 
 #include "MySqlParserBaseVisitor.h"
-//#include "MySqlParserVisitor.h"
 
-#include "Csv.h"
-#include "SqlCreateStruct.h"
+#include <string>
+#include <vector>
 
-class SqlExtractor: public MySqlParserBaseVisitor {
+class SqlExtractor {
 public:
-    /**
-     * create block
-     */
-    virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {
-        sqlCreateStruct.setTableName(ctx->tableName()->getText());
-        return visitChildren(ctx);
-    }
+    class SqlCreateVisitor;
 
-    /**
-     * column name
-     */
-    virtual antlrcpp::Any visitColumnDeclaration(MySqlParser::ColumnDeclarationContext *ctx) override {
+    class SqlCreateVisitor: public MySqlParserBaseVisitor {
+    public:
+        std::string tableName;
+        class Item;
 
-        std::cout << std::endl << ctx->uid()->getText() << std::endl;
-        return visitChildren(ctx);
-    }
+        class Item {
+        public:
+            std::string columnName;
+            std::string columnType;
+            std::string commentStr;
+            Item() = default;
+        };
 
-    /**
-     * column type
-     */
-    virtual antlrcpp::Any visitColumnDefinition(MySqlParser::ColumnDefinitionContext *ctx) override {
-        std::cout << ctx->dataType()->getText();
-        return visitChildren(ctx);
-    }
+        Item item;
+        std::vector<Item> *items;
 
-    /**
-     * column constraints
-     */
-    virtual antlrcpp::Any visitNullColumnConstraint(MySqlParser::NullColumnConstraintContext *ctx) override {
-        std::cout << "\t" << ctx->nullNotnull()->getText() << std::endl;
-        return visitChildren(ctx);
-    }
+        /**
+         * create block
+         */
+        virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {
+            // sqlCreateStruct.setTableName(ctx->tableName()->getText());
+            tableName = ctx->tableName()->getText();
+            return visitChildren(ctx);
+        }
 
-    virtual antlrcpp::Any visitDefaultColumnConstraint(MySqlParser::DefaultColumnConstraintContext *ctx) override {
-        std::cout << ctx->DEFAULT()->getText() << " ";
-        std::cout << ctx->defaultValue()->getText() << std::endl;
-        return visitChildren(ctx);
-    }
+        /**
+         * column name
+         */
+        virtual antlrcpp::Any visitColumnDeclaration(MySqlParser::ColumnDeclarationContext *ctx) override {
+            item.columnName = ctx->uid()->getText();
+            return visitChildren(ctx);
+        }
 
-    virtual antlrcpp::Any visitPrimaryKeyColumnConstraint(MySqlParser::PrimaryKeyColumnConstraintContext *ctx) override {
-        std::cout << ctx->PRIMARY()->getText() << " " << ctx->KEY()->getText()
-                  << std::endl;
-        return visitChildren(ctx);
-    }
+        /**
+         * column type
+         */
+        virtual antlrcpp::Any visitColumnDefinition(MySqlParser::ColumnDefinitionContext *ctx) override {
+            item.columnType = ctx->dataType()->getText();
+            return visitChildren(ctx);
+        }
 
-    virtual antlrcpp::Any visitUniqueKeyColumnConstraint(MySqlParser::UniqueKeyColumnConstraintContext *ctx) override {
-        std::cout << ctx->UNIQUE()->getText() << " " << ctx->KEY()->getText()
-                  << std::endl;
-        return visitChildren(ctx);
-    }
+        /**
+         * column constraints
+         */
+        virtual antlrcpp::Any visitNullColumnConstraint(MySqlParser::NullColumnConstraintContext *ctx) override {
+            std::cout << "\t" << ctx->nullNotnull()->getText() << std::endl;
+            return visitChildren(ctx);
+        }
 
-    virtual antlrcpp::Any visitCommentColumnConstraint(MySqlParser::CommentColumnConstraintContext *ctx) override {
-        std::cout << ctx->COMMENT()->getText() << " " << ctx->STRING_LITERAL()->getText()
-                  << std::endl;
-        return visitChildren(ctx);
-    }
+        virtual antlrcpp::Any visitDefaultColumnConstraint(MySqlParser::DefaultColumnConstraintContext *ctx) override {
+            std::cout << ctx->DEFAULT()->getText() << " ";
+            std::cout << ctx->defaultValue()->getText() << std::endl;
+            return visitChildren(ctx);
+        }
 
-    SqlCreateStruct sqlCreateStruct;
-    Csv csv;
+        virtual antlrcpp::Any visitPrimaryKeyColumnConstraint(MySqlParser::PrimaryKeyColumnConstraintContext *ctx) override {
+            std::cout << ctx->PRIMARY()->getText() << " " << ctx->KEY()->getText()
+                      << std::endl;
+            return visitChildren(ctx);
+        }
+
+        virtual antlrcpp::Any visitUniqueKeyColumnConstraint(MySqlParser::UniqueKeyColumnConstraintContext *ctx) override {
+            std::cout << ctx->UNIQUE()->getText() << " " << ctx->KEY()->getText()
+                      << std::endl;
+            return visitChildren(ctx);
+        }
+
+        virtual antlrcpp::Any visitCommentColumnConstraint(MySqlParser::CommentColumnConstraintContext *ctx) override {
+            item.commentStr = ctx->STRING_LITERAL()->getText();
+            return visitChildren(ctx);
+        }
+
+    };
 
 };
 
