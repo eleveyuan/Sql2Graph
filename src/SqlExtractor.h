@@ -30,10 +30,10 @@ public:
                 this->columnType = obj.columnType;
                 this->commentStr = obj.commentStr;
             }
-            ~Item() {}
+            ~Item() { std::cout << "already deconstruct" << std::endl; }
         };
 
-        Item *item = new Item();
+        Item item;
         std::vector<Item>* items;
 
         void appendItem(Item &_item) {
@@ -59,20 +59,22 @@ public:
         }
 
         virtual antlrcpp::Any visitColumnDeclaration(MySqlParser::ColumnDeclarationContext *ctx) override {
-            item->columnName = ctx->uid()->getText();
+            item.columnName = ctx->uid()->getText();
             return visitChildren(ctx);
         }
 
         virtual antlrcpp::Any visitColumnDefinition(MySqlParser::ColumnDefinitionContext *ctx) override {
-            item->columnType = ctx->dataType()->getText();
+            item.columnType = ctx->dataType()->getText();
             return visitChildren(ctx);
         }
 
         virtual antlrcpp::Any visitCommentColumnConstraint(MySqlParser::CommentColumnConstraintContext *ctx) override {
-            item->commentStr = ctx->STRING_LITERAL()->getText();
-            appendItem(*item);
+            item.commentStr = ctx->STRING_LITERAL()->getText();
+            appendItem(item);
             return visitChildren(ctx);
         }
+
+        ~SqlCreateVisitor() { delete items; }
 
     };
 
