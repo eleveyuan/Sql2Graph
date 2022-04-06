@@ -36,9 +36,10 @@ public:
         Item *item = new Item();
         std::vector<Item>* items;
 
-        void appendItem(Item *_item) {
-            Item tmp = *_item;
-            items->push_back(tmp);
+        void appendItem(Item &_item) {
+            Item tmp = _item;
+            std::cout << &tmp << " - " << &_item << std::endl;
+            items->push_back(tmp); // SIGSEGV problem
         }
 
         void showItems() {
@@ -69,7 +70,7 @@ public:
 
         virtual antlrcpp::Any visitCommentColumnConstraint(MySqlParser::CommentColumnConstraintContext *ctx) override {
             item->commentStr = ctx->STRING_LITERAL()->getText();
-            appendItem(item);
+            appendItem(*item);
             return visitChildren(ctx);
         }
 
