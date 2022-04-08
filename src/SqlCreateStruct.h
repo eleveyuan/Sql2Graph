@@ -15,6 +15,7 @@ public:
     class Entity;
 
     class Entity {
+    public:
         std::string columnName;
         std::string columnType;
         std::string commentStr;
@@ -30,8 +31,8 @@ public:
         tableName = _tablename;
     }
 
-    void appendEntity() {
-
+    void appendEntity(Entity _entity) {
+        entitys.push_back(_entity);
     }
 
 };
