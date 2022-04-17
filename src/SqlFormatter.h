@@ -13,8 +13,10 @@
 #include "ANTLRInputStream.h"
 #include "CommonTokenStream.h"
 #include "ParseTreeWalker.h"
+#include "ParseTreeWalker.h"
 
-#include "SqlExtractor.h"
+// #include "SqlExtractor.h"
+#include "SqlTracker.h"
 
 class SqlFormatter {
 public:

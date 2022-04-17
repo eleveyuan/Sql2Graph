@@ -19,7 +19,7 @@ public:
     class SqlCreateVisitor: public MySqlParserBaseVisitor {
     public:
         SqlCreateStruct item;
-        SqlCreateStruct::Entity entity;
+        SqlCreateStruct::Entity entity;  // 破坏了nesed class的封装
 
         void appendItem(SqlCreateStruct::Entity &_item) {
             SqlCreateStruct::Entity tmp = _item;

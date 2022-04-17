@@ -31,7 +31,7 @@ set(src_dir
         ${PROJECT_SOURCE_DIR}/src/Csv.cpp
         ${PROJECT_SOURCE_DIR}/src/Csv.h
         ${PROJECT_SOURCE_DIR}/src/SqlCreateStruct.cpp
-        ${PROJECT_SOURCE_DIR}/src/SqlCreateStruct.h)
+        ${PROJECT_SOURCE_DIR}/src/SqlCreateStruct.h src/SqlTracker.cpp src/SqlTracker.h)
 
 file(GLOB antlr4-cpp-src
         ${PROJECT_SOURCE_DIR}/libs/antlr4-runtime/src/*.cpp
