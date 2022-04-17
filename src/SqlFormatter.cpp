@@ -16,11 +16,11 @@ void SqlFormatter::parserSql(const std::string &sql) {
     parser.setBuildParseTree(true);
     MySqlParser::RootContext *tree = parser.root(); // 语法树root节点
 
-//    SqlExtractor::SqlCreateVisitor ev;
-//    ev.visit(tree);
-//    ev.showItems();
-    SqlTracker::SqlCreateListenor *ev = new SqlTracker::SqlCreateListenor();
-    antlr4::tree::ParseTreeWalker walker;
-    walker.walk(ev, tree);
-    ev->showItems();
+    SqlExtractor::SqlCreateVisitor ev;
+    ev.visit(tree);
+    ev.showItems();
+//    SqlTracker::SqlCreateListenor *ev = new SqlTracker::SqlCreateListenor();
+//    antlr4::tree::ParseTreeWalker walker;
+//    walker.walk(ev, tree);
+//    ev->showItems();
 }

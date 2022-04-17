@@ -19,6 +19,13 @@ public:
         std::string columnName;
         std::string columnType;
         std::string commentStr;
+        Entity() = default;
+        Entity(const Entity& e) {
+            columnName = e.columnName;
+            columnType = e.columnType;
+            commentStr = e.commentStr;
+        }
+        ~Entity() = default;
     };
 
     std::vector<Entity> entitys;
