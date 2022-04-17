@@ -18,5 +18,5 @@ void SqlFormatter::parserSql(const std::string &sql) {
 
     SqlExtractor::SqlCreateVisitor ev;
     ev.visit(tree);
-//    ev.showItems();
+    ev.showItems();
 }

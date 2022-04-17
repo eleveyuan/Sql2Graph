@@ -27,15 +27,15 @@ public:
             item.appendEntity(tmp); // SIGSEGV problem
         }
 
-//        void showItems() {
-//            std::cout << "table name: " << tableName << std::endl;
-//            for (std::vector<Item>::iterator iter = items->begin(); iter != items->end(); iter++) {
-//                std::cout << iter->columnName << " "
-//                          << iter->columnType << " "
-//                          << iter->commentStr << " "
-//                          << std::endl;
-//            }
-//        }
+        void showItems() {
+            std::cout << "table name: " << item.tableName << std::endl;
+            for (auto iter = item.entitys.begin(); iter != item.entitys.end(); iter++) {
+                std::cout << iter->columnName << " "
+                          << iter->columnType << " "
+                          << iter->commentStr << " "
+                          << std::endl;
+            }
+        }
 
         virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {
             // sqlCreateStruct.setTableName(ctx->tableName()->getText());

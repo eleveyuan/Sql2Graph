@@ -9,9 +9,9 @@
 #include <vector>
 
 class SqlCreateStruct {
-private:
-    std::string tableName;
 public:
+    std::string tableName;
+
     class Entity;
 
     class Entity {
