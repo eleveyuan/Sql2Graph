@@ -7,16 +7,17 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 
 #include "MySqlParserBaseVisitor.h"
-
 #include "SqlCreateStruct.h"
+#include "Csv.h"
 
 class SqlExtractor {
 public:
     class SqlCreateVisitor;
 
-    class SqlCreateVisitor: public MySqlParserBaseVisitor {
+    class SqlCreateVisitor: public MySqlParserBaseVisitor, public Csv {
     public:
         SqlCreateStruct item;
         SqlCreateStruct::Entity *entity = new SqlCreateStruct::Entity();  // 破坏了nesed class的封装
@@ -38,6 +39,22 @@ public:
                           << iter->commentStr << " "
                           << std::endl;
             }
+        }
+
+        void toCSV() {
+            setFileName(item.tableName);
+            std::ofstream ofs(item.tableName + ".csv");
+            if (!ofs.is_open()) {
+                std::cerr << "Error opening file for saving csv file." << std::endl;
+                exit(EXIT_FAILURE);
+            }
+            for (auto iter = item.entitys.begin(); iter != item.entitys.end(); iter++) {
+                ofs << iter->columnName << ","
+                    << iter->columnType << ","
+                    << iter->commentStr << ","
+                    << std::endl;
+            }
+            ofs.close();
         }
 
         virtual antlrcpp::Any visitColumnCreateTable(MySqlParser::ColumnCreateTableContext *ctx) override {

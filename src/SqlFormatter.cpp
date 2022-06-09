@@ -19,6 +19,7 @@ void SqlFormatter::parserSql(const std::string &sql) {
     SqlExtractor::SqlCreateVisitor ev;
     ev.visit(tree);
     ev.showItems();
+    ev.toCSV();
 //    SqlTracker::SqlCreateListenor *ev = new SqlTracker::SqlCreateListenor();
 //    antlr4::tree::ParseTreeWalker walker;
 //    walker.walk(ev, tree);
