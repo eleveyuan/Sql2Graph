@@ -6,6 +6,7 @@
 #define SQL2GRAPH_CSV_H
 
 #include <string>
+#include <fstream>
 
 class Csv {
 private:
@@ -13,6 +14,8 @@ private:
 public:
     void setFileName(std::string filename);
     std::string getFileName();
+
+    void save();
 };
 
 
