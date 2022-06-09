@@ -48,6 +48,10 @@ public:
                 std::cerr << "Error opening file for saving csv file." << std::endl;
                 exit(EXIT_FAILURE);
             }
+            ofs << "column name" << ","
+                << "column type" << ","
+                << "comment" << ","
+                << std::endl;
             for (auto iter = item.entitys.begin(); iter != item.entitys.end(); iter++) {
                 ofs << iter->columnName << ","
                     << iter->columnType << ","
