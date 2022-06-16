@@ -32,14 +32,7 @@ Once you've generated the lexer and/or parser code, you need to download or buil
 
 ## 主要用法(todo)
 
-check_sql(sql: str, cate: str): 检查sql语句
-
-parser_sql(sql: str): 解析sql语句
-
-dml2json(sql: str): 解析dml语句为json格式
-
-save_img(path: str): 将sql语句转为graph保存
-
-convert_ddl(sql: str, from: str, to: str): 将建表语句从现在的语法转为目标语法
-
-ddl2csv(sql: str, path: str): 将建表语句转为csv格式
+1. ddl to csv (done)
+2. restructure code  (doing)
+3. dml to json (todo)
+4. dml to graph (todo)
